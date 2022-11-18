@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('backend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">CMS Project</span>
     </a>
 
     <!-- Sidebar -->
@@ -58,8 +58,8 @@
 
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
-              <li class="nav-item menu-open">
-                <a href="{{Route('app.dashboard')}}" class="nav-link active">
+              <li class="nav-item menu-open" >
+                <a href="{{Route('app.dashboard')}}" class="nav-link {{Request::is('app/dashboard') ? 'active': ''}}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Dashboard</p>
                 </a>
@@ -67,8 +67,8 @@
             </ul>
           </li>
           
-          <li class="nav-item mt-1">
-            <a href="#" class="nav-link">
+          <li class="nav-item mt-1 {{Request::is('app/post*') ? 'menu-is-opening menu-open': ''}}">
+            <a href="#" class="nav-link {{Request::is('app/post*') ? 'active': ''}}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Post
@@ -76,10 +76,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item" style="{{Request::is('app/post/category*')?'background-color:rgba(4, 24, 87, 0.481);border-radius:5px':''}}">
                 <a href="{{Route('app.post.category.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa-solid fa-list"></i>
                   <p>Category List</p>
+                </a>
+              </li>
+              <li class="nav-item" style="{{Request::is('app/post/tag*')?'background-color:rgba(4, 24, 87, 0.481);border-radius:5px':''}}">
+                <a href="{{Route('app.post.tag.index')}}" class="nav-link">
+                  <i class="fa-solid fa-list"></i>
+                  <p>Tag List</p>
                 </a>
               </li>
             </ul>

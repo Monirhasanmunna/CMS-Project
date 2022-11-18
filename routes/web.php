@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,17 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace'=>'Backend','middleware'=>
             Route::get('/{id}/edit',[CategoryController::class,'edit'])->name('edit');
             Route::put('/{id}/update',[CategoryController::class,'update'])->name('update');
             Route::post('/{id}/delete',[CategoryController::class,'destroy'])->name('delete');
+
+        });
+
+        Route::group(['as'=>'tag.','prefix'=>'tag'],function(){
+
+            Route::get('index',[TagController::class,'index'])->name('index');
+            Route::get('create',[TagController::class,'create'])->name('create');
+            Route::post('store',[TagController::class,'store'])->name('store');
+            Route::get('/{id}/edit',[TagController::class,'edit'])->name('edit');
+            Route::put('/{id}/update',[TagController::class,'update'])->name('update');
+            Route::post('/{id}/delete',[TagController::class,'destroy'])->name('delete');
 
         });
 

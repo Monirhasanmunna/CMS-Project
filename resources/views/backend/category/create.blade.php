@@ -1,5 +1,8 @@
 @extends('layouts.backend.main')
 
+@push('title')
+    Category
+@endpush
 @section('content')
 <div class="content-wrapper">
     <div class="row">
