@@ -28,8 +28,11 @@
                     <li class="nav-item user-navItem">
                       <a class="nav-link pl-0" href="">Change Password</a>
                     </li>
+                    <form method="POST" id="logoutForm" action="{{ route('logout') }}" style="display: none;">
+                      @csrf
+                    </form>
                     <li class="nav-item user-navItem">
-                      <a class="nav-link pl-0" href="">Logout</a>
+                      <a class="nav-link pl-0" href="javascript:void(0);" onclick="$('#logoutForm').submit();">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +59,7 @@
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item menu-open">
-                <a href="./index.html" class="nav-link active">
+                <a href="{{Route('app.dashboard')}}" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Dashboard</p>
                 </a>
@@ -68,15 +71,15 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Forms
+                Post
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{Route('app.post.category.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
+                  <p>Category List</p>
                 </a>
               </li>
             </ul>

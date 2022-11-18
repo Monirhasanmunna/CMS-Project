@@ -26,22 +26,20 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('backend/plugins/summernote/summernote-bs4.min.css')}}">
 
-  {{-- <style>
-    .user-navItem{
-      margin-bottom: 2px;
-      border-radius: 5px;
-    }
-    .user-navItem :hover{
-      background-color: aqua;
-    }
-  </style> --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  @stack('css')
+
   <style>
     .form-inline{
       box-shadow: 0px -1px 3px 0px #B9BAB5;
     }
   </style>
+
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="overflow:hidden">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -103,6 +101,16 @@
 <script src="{{asset('backend/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 
+<script>
+  $(document).ready( function () {
+    $('#table_id').DataTable();
+  });
+</script>
+
+<script src="{{ asset('js/iziToast.js') }}"></script>
+@include('vendor.lara-izitoast.toast')
+@stack('js')
 </body>
 </html>
