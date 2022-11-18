@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content-wrapper">
-    <div class="row p-2 pl-3">
+    <div class="row p-3 pl-2">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
