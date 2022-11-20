@@ -74,7 +74,9 @@
                                   @foreach ($tags as $tag)
                                     <option value="{{$tag->id}}"
                                       @if(isset($post))
-                                      {{($post->tag_id == $tag->id)?'selected':''}}
+                                      @foreach ($post->tags as $t)
+                                      {{($t->id == $tag->id)?'selected':''}}
+                                      @endforeach
                                       @endif
                                       >{{$tag->name}}</option> 
                                   @endforeach
@@ -94,13 +96,19 @@
                               <span class="text-danger">{{ $message }}</span>
                               @enderror
                             </div>
-                            <img class="mt-2" id="imagePrev" src="{{isset($setup)?asset('storage/logo/'.$setup->logo): ''}}" width="100" height="100" style="border-radius: 5px"/>
+                            <img class="mt-2" id="imagePrev" src="{{isset($post)?asset('storage/post/'.$post->image): ''}}" width="100" height="100" style="border-radius: 5px"/>
+                             @if (isset($post))
+                             <div class="mt-3">
+                                <h4 class="p-0 m-0">Old Image :</h4>
+                                <img class="mt-2" id="oldPic" src="{{isset($post)?asset('storage/post/'.$post->image): ''}}" width="100" height="100" style="border-radius: 5px"/>
+                             </div>
+                             @endif
                           </div>
   
                           <div class="form-group">
                             <label for="description">Description</label>
                             <div class="description">
-                              <textarea name="description" id="editor" cols="30" rows="100"></textarea>
+                              <textarea name="description" id="editor" cols="30" rows="100">{{isset($post)? $post->description : ''}}</textarea>
                             </div>
                           </div>
   

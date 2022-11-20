@@ -77,7 +77,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item" style="{{Request::is('app/post/post*')?'background-color:rgba(4, 24, 87, 0.481);border-radius:5px':''}}">
-                <a href="{{Route('app.post.post.create')}}" class="nav-link">
+                <a href="{{Route('app.post.post.index')}}" class="nav-link">
                   <i class="fa-solid fa-list"></i>
                   <p>Post List</p>
                 </a>

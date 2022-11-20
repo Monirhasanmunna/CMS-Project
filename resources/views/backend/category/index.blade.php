@@ -22,7 +22,7 @@
                                     <th style="width: 300px;">Name</th>
                                     <th style="width: 300px;">Slug</th>
                                     <th style="width: 200px;">Status</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,7 +38,7 @@
                                             <span class="badge badge-warning">Deactive</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <a class="btn btn-sm btn-primary" href="{{Route('app.post.category.edit',$category->id)}}"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
                                         <form id="deleteForm" action="{{Route('app.post.category.delete',$category->id)}}" method="post" style="display: none;">
                                             @csrf

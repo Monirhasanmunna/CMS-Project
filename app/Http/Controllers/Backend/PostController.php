@@ -20,7 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::orderBy('id','DESC')->get();
+        return view('backend.post.index',compact('posts'));
     }
 
     /**
@@ -88,7 +89,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::with('category','tags')->findOrfail($id);
+        return response()->json($post);
     }
 
     /**
@@ -99,7 +101,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrfail($id);
+        $categories = Category::all();
+        $tags       = Tag::all();
+        return view('backend.post.create',compact('categories','tags','post'));
     }
 
     /**
@@ -111,7 +116,48 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'         => 'required',
+            'category_id'   => 'required',
+            'tag_id'        => 'required',
+            'description'   => 'required',
+        ]);
+
+        $post = Post::findOrfail($id);
+        $image = $request->file('image');
+        $slug = Str::slug($request->title);
+        $imageName = '';
+        if(isset($image)){
+            //make unique name for image`
+            $imageName = $slug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('post'))
+            {
+                Storage::disk('public')->makeDirectory('post');
+            }
+
+            //delete old pic
+            if(Storage::disk('public')->exists('post/'.$post->image)){
+
+                Storage::disk('public')->delete('post/'.$post->image);
+            }
+
+            $postImage = Image::make($image)->resize(400,400)->stream();
+            Storage::disk('public')->put('post/'.$imageName,$postImage);
+        }else{
+            $imageName = $post->image;
+        }
+
+        $post->title        = $request->title;
+        $post->category_id  = $request->category_id;
+        $post->description  = $request->description;
+        $post->image        = $imageName;
+        $post->status       = $request->filled('status');
+        $post->save();
+        $post->tags()->sync($request->tag_id);
+
+        notify()->success('Post Updated Successfully');
+        return redirect()->route('app.post.post.index');
     }
 
     /**
@@ -122,6 +168,17 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrfail($id);
+
+        //delete old pic
+        if(Storage::disk('public')->exists('post/'.$post->image)){
+
+            Storage::disk('public')->delete('post/'.$post->image);
+        }
+
+        $post->delete();
+
+        notify()->success('Post Deleted Successfully');
+        return redirect()->route('app.post.post.index');
     }
 }

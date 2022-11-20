@@ -64,6 +64,9 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace'=>'Backend','middleware'=>
             Route::put('/{id}/update',[PostController::class,'update'])->name('update');
             Route::post('/{id}/delete',[PostController::class,'destroy'])->name('delete');
 
+            //ajax route
+            Route::get('/show/{id}',[PostController::class,'show']);
+
         });
 
     });
