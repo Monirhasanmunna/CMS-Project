@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\ProfileController;
@@ -30,6 +31,8 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])->middleware('
 
 Route::group(['as'=>'app.','prefix'=>'app','namespace'=>'Backend','middleware'=>['auth','verified']],function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+//post route starts here
 
     Route::group(['as'=>'post.','prefix'=>'post'],function(){
 
@@ -71,7 +74,20 @@ Route::group(['as'=>'app.','prefix'=>'app','namespace'=>'Backend','middleware'=>
 
     });
 
+//post route ends here
 
+//page route start here
+        Route::group(['as'=>'page.','prefix'=>'page'],function(){
+
+            Route::get('index',[PageController::class,'index'])->name('index');
+            Route::get('create',[PageController::class,'create'])->name('create');
+            Route::post('store',[PageController::class,'store'])->name('store');
+            Route::get('/{id}/edit',[PageController::class,'edit'])->name('edit');
+            Route::put('/{id}/update',[PageController::class,'update'])->name('update');
+            Route::post('/{id}/delete',[PageController::class,'destroy'])->name('delete');
+
+        });
+//page route ends here
 });
 
 require __DIR__.'/auth.php';

@@ -68,27 +68,27 @@
           </li>
           
           <li class="nav-item mt-1 {{Request::is('app/post*') ? 'menu-is-opening menu-open': ''}}">
-            <a href="#" class="nav-link {{Request::is('app/post*') ? 'active': ''}}">
-              <i class="nav-icon fas fa-edit"></i>
+            <a href="#" class="nav-link {{Request::is('app/post*') ? 'active': ''}}" style="padding-left: 12px;">
+              <i class="nav-icon fas fa-edit px-0 mx-0"></i>
               <p>
                 Post
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item" style="{{Request::is('app/post/post*')?'background-color:rgba(4, 24, 87, 0.481);border-radius:5px':''}}">
+              <li class="nav-item" style="{{Request::is('app/post/post*')?'background-color:rgba(4, 24, 87, 0.481);':''}}">
                 <a href="{{Route('app.post.post.index')}}" class="nav-link">
                   <i class="fa-solid fa-list"></i>
                   <p>Post List</p>
                 </a>
               </li>
-              <li class="nav-item" style="{{Request::is('app/post/category*')?'background-color:rgba(4, 24, 87, 0.481);border-radius:5px':''}}">
+              <li class="nav-item" style="{{Request::is('app/post/category*')?'background-color:rgba(4, 24, 87, 0.481);':''}}">
                 <a href="{{Route('app.post.category.index')}}" class="nav-link">
                   <i class="fa-solid fa-list"></i>
                   <p>Category List</p>
                 </a>
               </li>
-              <li class="nav-item" style="{{Request::is('app/post/tag*')?'background-color:rgba(4, 24, 87, 0.481);border-radius:5px':''}}">
+              <li class="nav-item" style="{{Request::is('app/post/tag*')?'background-color:rgba(4, 24, 87, 0.481);':''}}">
                 <a href="{{Route('app.post.tag.index')}}" class="nav-link">
                   <i class="fa-solid fa-list"></i>
                   <p>Tag List</p>
@@ -96,7 +96,24 @@
               </li>
             </ul>
           </li>
-         
+
+          <li class="nav-item mt-1 {{Request::is('app/page*') ? 'menu-is-opening menu-open': ''}}">
+            <a href="#" class="nav-link {{Request::is('app/page*') ? 'active': ''}}">
+              <i class="fa-solid fa-file-lines fa-lg"></i>
+              <p>
+                Page
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item" style="{{Request::is('app/page*')?'background-color:rgba(4, 24, 87, 0.481);':''}}">
+                <a href="{{Route('app.page.index')}}" class="nav-link">
+                  <i class="fa-solid fa-list"></i>
+                  <p>Page List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
